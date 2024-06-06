@@ -1,0 +1,88 @@
+/* eslint-disable react/prop-types */
+import { CircleMarker, MapContainer, TileLayer } from "react-leaflet";
+import MarkerMap from "./Marker";
+import { puntosVidrios } from "../../Helpers/PuntosVidrios";
+import { Box } from "@mui/material";
+import { useRef, useState } from "react";
+import Resultados from "../Table/Tabla";
+import NuevaSimulacion from "../Formulario/Formulario";
+
+const redOptions = { color: 'red' }
+export default function Mapa() {
+const mapRef = useRef(null);
+const [select, setSelect] = useState(""); 
+const [simulator, setSimulator] = useState(false); 
+const [data, setData] = useState({}); 
+const [isLoading, setIsLoading] = useState(false); 
+const addSelect = (props) => {
+    const {lat, lng, label} = props;
+    const map = mapRef.current;
+    if(map){
+        map.setView([lat, lng], 15);
+        setSimulator(true); 
+        setSelect(label); 
+    } 
+}; 
+const closeSimulador = () => {
+    setSimulator(false); 
+    setSelect("");
+    setData({});  
+    setIsLoading(false); 
+    const map = mapRef.current;
+    if (map) {
+      map.setView(["-34.47733729824062", "-58.57290783466175"], 12);
+    }
+  }
+  const addValue = (value) =>{
+    console.log(value);
+    setData({...value}); 
+    setIsLoading(true); 
+}
+    return(
+        <>
+        <Box sx={{width:"100%" ,display:"flex"}} id="simulador">
+            <Box sx={  {width:"100%" }}>
+        <MapContainer
+        key={Date.now}
+        center={{ lat: "-34.47733729824062", lng: "-58.57290783466175" }}
+        zoom={12}
+        ref={mapRef}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.google.com/maps">Google Maps</a> contributors'
+          url="https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}"
+        />
+        {
+          puntosVidrios?.map((punto, index) => {
+              return punto.label === select ?
+            <CircleMarker key={index} center={[punto.lat, punto.lng]} pathOptions={redOptions} radius={100}>
+            <MarkerMap 
+                lat={punto.lat}
+                lng={punto.lng}
+                label={punto.label}
+                addSelect = {addSelect}
+              />
+            </CircleMarker>: 
+              <MarkerMap
+                key={index}
+                lat={punto.lat}
+                lng={punto.lng}
+                label={punto.label}
+                addSelect = {addSelect}
+              />
+          })
+        }
+      </MapContainer>
+     
+            </Box>
+        {
+        simulator&& <NuevaSimulacion close={closeSimulador} addValue={addValue} text={select}/>
+      }
+        
+        </Box>
+        {
+            isLoading ? <Resultados data={data}/>: null 
+        }
+        </>
+    );
+}
