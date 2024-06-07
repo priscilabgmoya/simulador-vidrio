@@ -14,7 +14,7 @@ export const newIcon = () => {
 
 export const schemaSimulacion = Yup.object().shape({
     cantidadPersonas: Yup.number()
-      .min(1, 'Debe haber al menos una persona')
+      .min(1500, 'Debe haber al menos 1500 personas')
       .required('La cantidad de personas es obligatoria'),
     
     porcentajeConsumoVidrio: Yup.number()
@@ -29,11 +29,19 @@ export const schemaSimulacion = Yup.object().shape({
     
     normalA: Yup.number()
     .min(1, 'Debe haber al menos una Botella incial')
-      .required('El valor de Normal A es obligatorio'),
+      .required('El valor Desde es obligatorio'),
     
     normalB: Yup.number()
     .min(1, 'Debe haber al menos una Botella final')
-      .required('El valor de Normal B es obligatorio')
+      .required('El valor Hasta es obligatorio')
+      .test(
+        'is-greater',
+        'Hasta debe ser mayor que Desde',
+        function(value) {
+          const { normalA } = this.parent;
+          return value > normalA;
+        }
+      ),
   });
 
 export const valueSimulacion = {

@@ -6,6 +6,8 @@ import { Box } from "@mui/material";
 import { useRef, useState } from "react";
 import Resultados from "../Table/Tabla";
 import NuevaSimulacion from "../Formulario/Formulario";
+import LoadData from "../LoadData/LoadData";
+import { webWorker } from "../../../Simulador/SimuladorVidrio";
 
 const redOptions = { color: 'red' }
 export default function Mapa() {
@@ -14,6 +16,7 @@ const [select, setSelect] = useState("");
 const [simulator, setSimulator] = useState(false); 
 const [data, setData] = useState({}); 
 const [isLoading, setIsLoading] = useState(false); 
+const [load, setLoad] = useState(false); 
 const addSelect = (props) => {
     const {lat, lng, label} = props;
     const map = mapRef.current;
@@ -23,11 +26,15 @@ const addSelect = (props) => {
         setSelect(label); 
     } 
 }; 
+const generateLoad =()=>{
+  setLoad(true);
+}
 const closeSimulador = () => {
     setSimulator(false); 
     setSelect("");
     setData({});  
     setIsLoading(false); 
+    setLoad(false);
     const map = mapRef.current;
     if (map) {
       map.setView(["-34.47733729824062", "-58.57290783466175"], 12);
@@ -37,6 +44,10 @@ const closeSimulador = () => {
     console.log(value);
     setData({...value}); 
     setIsLoading(true); 
+    setLoad(false); 
+    if(data.resultados?.length === 14){
+      webWorker.terminate(); 
+    }
 }
     return(
         <>
@@ -76,12 +87,15 @@ const closeSimulador = () => {
      
             </Box>
         {
-        simulator&& <NuevaSimulacion close={closeSimulador} addValue={addValue} text={select}/>
+        simulator&& <NuevaSimulacion close={closeSimulador} addValue={addValue} text={select} load={generateLoad}/>
       }
         
         </Box>
         {
-            isLoading ? <Resultados data={data}/>: null 
+            isLoading ? <Resultados data={data}/>: null
+        }
+        {
+            load ? <LoadData/>: null 
         }
         </>
     );

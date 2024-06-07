@@ -1,22 +1,18 @@
 /* eslint-disable no-unused-vars */
 import { diaRecoleccion } from "./helps";
 
+export const webWorker = new Worker("../Worker.js"); 
+export const workerPersonas = new Worker("./WorkerPersonas.js"); 
 
 let dia = diaRecoleccion; 
-export async function SimuladorVidrio(values,addValue){
+export async function SimuladorVidrio(values){
     let resultados = [], TB=0, TVM=0 , totales={}; 
-    const webWorker = new Worker("../Worker.js"); 
-    webWorker.postMessage({cmd: 1 , value: values, dia: diaRecoleccion, resultados:[] })
+    webWorker.postMessage({cmd: 1 , value: values, dia: diaRecoleccion })
          
        /*const {response} =setInfo(values); 
        addValue(response)*/
-       webWorker.onmessage = function(e){
-        const {cdm, totales } = e.data; 
-        if(cdm === 0){
-            // addValue(totales)
-            console.log(totales);
-        }
-       }
+}
+
 /*
     
     while(dia > 0){
@@ -43,5 +39,5 @@ export async function SimuladorVidrio(values,addValue){
     }
     return{totales}; 
     */
-}
+
 

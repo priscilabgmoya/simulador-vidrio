@@ -4,7 +4,7 @@ import { Label } from '@mui/icons-material';
 import { Box, Button, Grid,TextField, Typography  } from '@mui/material';
 import { useFormik } from 'formik';
 import { schemaSimulacion, valueSimulacion } from '../../Helpers/helps';
-import { SimuladorVidrio } from '../../../Simulador/SimuladorVidrio';
+import { SimuladorVidrio, webWorker, workerPersonas } from '../../../Simulador/SimuladorVidrio';
 const inputGestionar = { width: "100%", backgroundColor: "white", m: 1 }
 const form = {display:"flex", flexDirection:"column"}
 const msgError = {color:"red", fontSize: 15,mt:1}
@@ -12,10 +12,11 @@ const msgError = {color:"red", fontSize: 15,mt:1}
 export default function NuevaSimulacion(props){
 
   
-  const  {open, text, close,addValue} = props; 
+  const  {open, text, close,addValue, load} = props; 
   const onSubmit = async (values,{resetForm})=>{ 
-    await SimuladorVidrio(values,addValue); 
-
+     SimuladorVidrio(values,addValue); 
+    // resetForm(); 
+     load(); 
       }
       const formik = useFormik({
         initialValues: valueSimulacion,
@@ -26,9 +27,16 @@ export default function NuevaSimulacion(props){
         formik.resetForm(); 
         close(); 
         localStorage.clear(); 
+        workerPersonas.terminate(); 
+        webWorker.terminate(); 
       }
 
-
+webWorker.onmessage = async function(e){
+        const {cdm, totales } = e.data; 
+        if(cdm === 0){
+             addValue(totales)
+        }
+    }
     return(
 
 <>
@@ -85,7 +93,7 @@ export default function NuevaSimulacion(props){
             role="inputDescripcionProvincia"
             name="normalA"
             id="descripcionProvincia"
-            label= "Número 1"
+            label= "Desde"
             onChange={formik.handleChange}
             value={formik.values.normalA}
             sx={inputGestionar}
@@ -98,7 +106,7 @@ export default function NuevaSimulacion(props){
             role="inputDescripcionProvincia"
             name="normalB"
             id="descripcionProvincia"
-            label= "Número 2"
+            label= "Hasta"
             onChange={formik.handleChange}
             value={formik.values.normalB}
             sx={inputGestionar}

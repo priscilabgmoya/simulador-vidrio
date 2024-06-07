@@ -59,19 +59,19 @@ let persistencia =[]
 // INICIO DE DISTRIBUCION //
 
   function Uniforme(a,b, posicion){
-    let u = parseFloat(metodoCongruenciaMultiplicativo(generarNumero_a(), generarNumero_c(), generarNumero_m(), posicion));
+    let u = parseFloat(metodoLehmen(generarNumero_a(), generarNumero_c(), posicion));
     return Math.trunc(a + ((b-a) *u));  
 }
 // FIN DE DISTRIBUCION // 
 //worker.js
 
 // INICIO DE SIMULADOR // 
+let totalBotellas=0, totalVidrioMolido=0 
+,personaConsumeVidrio =0 , personaNoConsumeVidrio =0, persona_reciclan=0, persona_no_recicla =0; 
  function CalcularPersonas(personas, value){
     const {porcentajeConsumoVidrio,porcentajePersonaReciclan,normalA,normalB} = value; 
-    let totalBotellas=0, totalVidrioMolido=0 ; 
     let posicion =0;
         let posicionBotella =0; 
-        let personaConsumeVidrio =0 , personaNoConsumeVidrio =0, persona_reciclan=0, persona_no_recicla =0; 
         let persona=0, botellasRecicladas =0, vidrioMolido=0; 
         while(persona < personas ){
         let  u = parseFloat(metodoLehmen(generarNumero_a(), generarNumero_c(), posicion)); 
@@ -115,7 +115,6 @@ let persistencia =[]
  // FIN DEL SIMULADOR // 
 
  self.onmessage = async function(e){
-    console.log(e.data);
     const {cdm , value, personas,} = e.data; 
     if(cdm == "calcular"){
       let { data, totalBotellas, totalVidrioMolido}=  CalcularPersonas(personas, value); 

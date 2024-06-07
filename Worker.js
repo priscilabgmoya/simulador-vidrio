@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 
 // INICIO DE HELPERS// 
- function generarNumero_a() {
+function generarNumero_a() {
     let numero = Math.round(Math.random() * 1000); // Multiplicamos por 1000 para obtener un número grande
     if (numero % 2 === 0) { // Si es par
         numero++; // Incrementamos en uno para hacerlo impar
@@ -57,43 +57,45 @@ let persistencia =[]
 //worker.js
 
 // INICIO DE SIMULADOR // 
-
+const workerPersonas = new Worker("./WorkerPersonas.js"); 
+function Simulador(value, dia){
+    const {cantidadPersonas} = value; 
+    let d = 0, personas= 0 ;  
+    while(d <dia){ 
+        personas = Normal(cantidadPersonas, generarNumero_c(),personas); 
+        console.log(d, personas);
+        if(personas < 0) return Simulador(value,dia-d);
+        workerPersonas.postMessage({value, personas, cdm:"calcular"});  
+        d++; 
+    }
+}
  // FIN DEL SIMULADOR // 
+ let totales = {},TB=0, TVM=0;
 self.onmessage =   function(e){
-    let totales = {};
     console.log(e.data);
     const {cmd , value, dia,} = e.data; 
-    let {resultados} = e.data; 
     if(cmd === 1){
-        const {cantidadPersonas} = value; 
-        let d = 0, personas= 0,TB=0, TVM=0 ;  
-        while(d <dia){ 
-            personas = Normal(cantidadPersonas, generarNumero_c(),personas); 
-            console.log(d, personas);
-            if(personas < 0) return Simulador(resultados, value,dia-d);
-            const workerPersonas = new Worker("./WorkerPersonas.js"); 
-            workerPersonas.postMessage({value, personas, cdm:"calcular"}); 
-            workerPersonas.onmessage = function(e){
-                let {cdm, data, totalBotellas, totalVidrioMolido} = e.data; 
-                if(cdm == "resultado"){
-                    resultados.push({...data}); 
-                    TB += totalBotellas; 
-                    TVM += totalVidrioMolido;
-                }
-            }
-           
-            d++; 
-        }
-        totales ={
-            cant_total_botellas: TB,
-            cant_total_baldosas: Math.round(TVM/(1,312)), 
-            resultados: resultados.map((res, index) =>{
-                return {
-                    ...res, 
-                    dia: index+1
-                }
-            })
-        }
-        self.postMessage({cdm:0, totales:totales });
+        Simulador(value, dia); 
     }
+}
+
+let resultados= []; 
+workerPersonas.onmessage = function(e){
+    let {cdm, data, totalBotellas, totalVidrioMolido} = e.data; 
+    if(cdm == "resultado"){
+        resultados.push({...data}); 
+        TB += totalBotellas; 
+        TVM += totalVidrioMolido;
+    }
+    totales ={
+        cant_total_botellas: TB,
+        cant_total_baldosas: Math.round(TVM/(1,312)), 
+        resultados: resultados.map((res, index) =>{
+            return {
+                ...res, 
+                dia: index+1
+            }
+        })
+    }
+    self.postMessage({cdm:0, totales:totales });
 }
