@@ -51,7 +51,7 @@ const closeSimulador = () => {
 }
     return(
         <>
-        <Box sx={{width:"100%" ,display:"flex"}} id="simulador">
+        <Box sx={{width:"100%" ,display:"flex", flexDirection:"column"}} id="simulador">
             <Box sx={  {width:"100%" }}>
         <MapContainer
         key={Date.now}

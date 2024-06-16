@@ -66,15 +66,16 @@ let persistencia =[]
 //worker.js
 
 // INICIO DE SIMULADOR // 
-let totalBotellas=0, totalVidrioMolido=0 
-,personaConsumeVidrio =0 , personaNoConsumeVidrio =0, persona_reciclan=0, persona_no_recicla =0; 
- function CalcularPersonas(personas, value){
+let  totalVidrioMolido=0 
+function CalcularPersonas(personas, value){
     const {porcentajeConsumoVidrio,porcentajePersonaReciclan,normalA,normalB} = value; 
     let posicion =0;
         let posicionBotella =0; 
-        let persona=0, botellasRecicladas =0, vidrioMolido=0; 
+        let persona=0, botellasRecicladas =0,TVM=0, vidrioMolido=0 ,personaConsumeVidrio =0 , personaNoConsumeVidrio =0, persona_reciclan=0, persona_no_recicla =0,
+        botellas=0; 
         while(persona < personas ){
         let  u = parseFloat(metodoLehmen(generarNumero_a(), generarNumero_c(), posicion)); 
+        console.log(parseFloat(porcentajeConsumoVidrio));
         if(u<= parseFloat(porcentajeConsumoVidrio)){
             personaConsumeVidrio ++; 
             posicion++; 
@@ -83,16 +84,17 @@ let totalBotellas=0, totalVidrioMolido=0
                 persona_reciclan++;
                 posicion++; 
             botellasRecicladas = Uniforme(normalA,normalB, posicionBotella);
-            totalBotellas += botellasRecicladas; 
+            botellas += botellasRecicladas; 
             vidrioMolido = 0.744 * botellasRecicladas; 
+            TVM += vidrioMolido
             totalVidrioMolido +=vidrioMolido;
             u =0; 
             posicionBotella ++; 
             }else{
                 persona_no_recicla++; 
             u=0; 
+
             }
-            u=0; 
         }else{
             personaNoConsumeVidrio ++;
             u=0; 
@@ -106,10 +108,10 @@ let totalBotellas=0, totalVidrioMolido=0
            cant_personas_no_vidrio: personaNoConsumeVidrio,
            cant_personas_reciclan: persona_reciclan, 
            cant_personas_no_reciclan: persona_no_recicla, 
-           cant_botellas: botellasRecicladas,
-           cant_vidrio_molido: vidrioMolido, 
+           cant_botellas: botellas,
+           cant_vidrio_molido:parseFloat(TVM.toFixed(4)), 
         }
-        return{data, totalBotellas, totalVidrioMolido}; 
+        return{data, totalVidrioMolido}; 
     
 }
  // FIN DEL SIMULADOR // 
@@ -117,7 +119,7 @@ let totalBotellas=0, totalVidrioMolido=0
  self.onmessage = async function(e){
     const {cdm , value, personas,} = e.data; 
     if(cdm == "calcular"){
-      let { data, totalBotellas, totalVidrioMolido}=  CalcularPersonas(personas, value); 
-      self.postMessage({cdm:"resultado", data, totalBotellas, totalVidrioMolido});
+      let { data, totalVidrioMolido}=  CalcularPersonas(personas, value); 
+      self.postMessage({cdm:"resultado", data, totalVidrioMolido});
     }
 }

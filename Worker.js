@@ -70,7 +70,7 @@ function Simulador(value, dia){
     }
 }
  // FIN DEL SIMULADOR // 
- let totales = {},TB=0, TVM=0;
+ let totales = {}, TVM=0;
 self.onmessage =   function(e){
     console.log(e.data);
     const {cmd , value, dia,} = e.data; 
@@ -79,16 +79,18 @@ self.onmessage =   function(e){
     }
 }
 
-let resultados= []; 
+let resultados= []; let total=0;
 workerPersonas.onmessage = function(e){
-    let {cdm, data, totalBotellas, totalVidrioMolido} = e.data; 
+    let {cdm, data, totalVidrioMolido} = e.data; 
     if(cdm == "resultado"){
         resultados.push({...data}); 
-        TB += totalBotellas; 
         TVM += totalVidrioMolido;
     }
+    resultados?.map((valorAnterior) => {
+        total+= valorAnterior.cant_botellas; 
+       })
     totales ={
-        cant_total_botellas: TB,
+        cant_total_botellas: total,
         cant_total_baldosas: Math.round(TVM/(1,312)), 
         resultados: resultados.map((res, index) =>{
             return {
@@ -98,4 +100,5 @@ workerPersonas.onmessage = function(e){
         })
     }
     self.postMessage({cdm:0, totales:totales });
+    total=0; 
 }

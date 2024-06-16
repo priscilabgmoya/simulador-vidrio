@@ -73,14 +73,6 @@ const handleChange = (e)=>{
         {" "}
         {`Resultados de la Simulación`}
       </Typography>
-      <Typography
-        variant="h5"
-        sx={{ mb: 1, mt: 1, textAlign: "center", width: "100%" }}
-        fontWeight="bold"
-      >
-        {" "}
-        {`Cant. Total de Botellas: ${data?.cant_total_botellas} - Cant. Total de Baldosas: ${data?.cant_total_baldosas}`}
-      </Typography>
       <Box sx={{ height: 425, width:  '100%' }}>
         <DataGrid
           rows={data?.resultados}
@@ -94,9 +86,19 @@ const handleChange = (e)=>{
             paginationModel={paginate}
             onPaginationModelChange={handleChange}
           pageSizeOptions={[5, 10, 25, 30,50 ]}
-          loading={data?.length ==0}
+          loading={data?.resultados.length ==0}
         />
       </Box>
+{
+  data?.resultados?.length == 14 ?       <Typography
+  variant="h5"
+  sx={{ mb: 1, mt: 1, textAlign: "center", width: "100%" }}
+  fontWeight="bold"
+>
+  {" "}
+  {`Cant. Total de Botellas Recolectada en 14 días: ${data?.cant_total_botellas} - Cant. Total de Baldosas: ${data?.cant_total_baldosas}`}
+</Typography>: null
+}
 
     </Box>
   );

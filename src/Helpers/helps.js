@@ -2,7 +2,7 @@ import { Icon } from "leaflet";
 import * as Yup from 'yup';
 export const newIcon = () => {
     let nuevoIcon =  new Icon({
-        iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png`,
+        iconUrl: `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-violet.png`,
         shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
         iconSize: [25, 41],
         iconAnchor: [12, 41],
@@ -14,7 +14,8 @@ export const newIcon = () => {
 
 export const schemaSimulacion = Yup.object().shape({
     cantidadPersonas: Yup.number()
-      .min(1500, 'Debe haber al menos 1500 personas')
+      .positive("Se debe ingresar Numeros Postivos")
+      .min(2000, 'Debe haber al menos 2000 personas')
       .required('La cantidad de personas es obligatoria'),
     
     porcentajeConsumoVidrio: Yup.number()
@@ -29,10 +30,12 @@ export const schemaSimulacion = Yup.object().shape({
     
     normalA: Yup.number()
     .min(1, 'Debe haber al menos una Botella incial')
+    .positive("Se debe ingresar Numeros Postivos")
       .required('El valor Desde es obligatorio'),
     
     normalB: Yup.number()
     .min(1, 'Debe haber al menos una Botella final')
+    .positive("Se debe ingresar Numeros Postivos")
       .required('El valor Hasta es obligatorio')
       .test(
         'is-greater',
@@ -54,4 +57,11 @@ export const valueSimulacion = {
 
 export function generarID() {
     return '_' + Math.random().toString(36).substr(2, 9);
+}
+export function generatePorcentaje(){
+  const porcentajes = [];
+for (let i = 0; i <= 100; i++) {
+    porcentajes.push({ porcentaje: (i / 100).toFixed(2) });
+}
+return {porcentajes}
 }
