@@ -8,7 +8,7 @@ import vidrio from "../../../public/vidrio-molido.jpg"
 import fabrica from "../../../public/factory.png"
 export default function Process() {
   return (
-    <Box sx={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "center" }}>
+    <Box sx={{ width: "100%", display: "flex", flexWrap: "wrap", justifyContent: "center" , mt:2}}>
       <Box sx={{ width: "100%" }}>
         <Typography  fontWeight="bold">Durante 14 días:</Typography>
         <List>

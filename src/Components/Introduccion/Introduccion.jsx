@@ -8,6 +8,7 @@ export default function Introduccion() {
         variant="h3"
         textAlign={"center"}
         className="animate__animated animate__backInLeft"
+        sx={{mt:2}}
       >
         Situación Problematica
       </Typography>
@@ -15,6 +16,7 @@ export default function Introduccion() {
         variant="body1"
         textAlign={"justify"}
         className="animate__animated animate__backInUp"
+        sx={{mt:2}}
       >
         Actualmente, el manejo inadecuado de residuos sólidos, en particular el
         vidrio, representa un gran desafío ambiental y de sostenibilidad. El
@@ -44,6 +46,7 @@ export default function Introduccion() {
         variant="body1"
         textAlign={"justify"}
         className="animate__animated animate__backInUp"
+        sx={{mt:2}}
       >
         En Argentina se producen más de 1.000.000 de toneladas de vidrio por
         año, y se recupera de ese volumen al menos un 0,5%. Los recolectores
@@ -57,8 +60,9 @@ export default function Introduccion() {
       <Typography
         variant="h5"
         textAlign={"justify"}
-        sx={{ mt: 1 }}
+        sx={{ mt: 2 }}
         className="animate__animated animate__backInUp"
+        
       >
         ¿Quién es Nuestro Cliente?
       </Typography>
@@ -66,6 +70,7 @@ export default function Introduccion() {
         variant="body1"
         textAlign={"justify"}
         className="animate__animated animate__backInUp"
+        sx={{mt:2}}
       >
         Gustavo Chopitea el director de Reciqlo. Reciqlo es una empresa de
         tecnología y Economía Circular, que mejora la eficiencia de los procesos
@@ -75,8 +80,9 @@ export default function Introduccion() {
       <Typography
         variant="h5"
         textAlign={"justify"}
-        sx={{ mt: 1 }}
+        sx={{ mt: 2 }}
         className="animate__animated animate__backInUp"
+        
       >
         ¿Cómo es el Proceso de Reciclado de Vidrio?
       </Typography>
