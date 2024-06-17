@@ -31,5 +31,5 @@ export function restNro(nro, k){
    return {first: first, second: second}; 
 }
 
-export let diaRecoleccion = 14; 
+
 

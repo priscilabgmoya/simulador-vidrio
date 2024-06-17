@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { diaRecoleccion } from "./helps";
+ let diaRecoleccion = 14; 
 
-export const webWorker = new Worker("../Worker.js"); 
-export const workerPersonas = new Worker("../WorkerPersonas.js"); 
+export const webWorker = new Worker("./Worker.js"); 
+export const workerPersonas = new Worker("./WorkerPersonas.js"); 
 
-let dia = diaRecoleccion; 
+
 export async function SimuladorVidrio(values){
     let resultados = [], TB=0, TVM=0 , totales={}; 
     webWorker.postMessage({cmd: 1 , value: values, dia: diaRecoleccion })

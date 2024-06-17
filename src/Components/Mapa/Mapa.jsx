@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 import Resultados from "../Table/Tabla";
 import NuevaSimulacion from "../Formulario/Formulario";
 import LoadData from "../LoadData/LoadData";
-import { webWorker } from "../../../Simulador/SimuladorVidrio";
+import { webWorker } from "../../../netlify/functions/SimuladorVidrio";
 
 const redOptions = { color: 'red' }
 export default function Mapa() {
