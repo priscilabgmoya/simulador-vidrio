@@ -2,7 +2,7 @@
 import { CircleMarker, MapContainer, TileLayer } from "react-leaflet";
 import MarkerMap from "./Marker";
 import { puntosVidrios } from "../../Helpers/PuntosVidrios";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useRef, useState } from "react";
 import Resultados from "../Table/Tabla";
 import NuevaSimulacion from "../Formulario/Formulario";
@@ -58,6 +58,7 @@ const closeSimulador = () => {
 }
     return(
         <>
+        <Typography variant="h3"  textAlign={"center"}>Simulador de Reciclado de Reciqlo  </Typography>
         <Box sx={{width:"100%" ,display:"flex", flexDirection:"column"}} id="simulador">
             <Box sx={  {width:"100%" }}>
         <MapContainer

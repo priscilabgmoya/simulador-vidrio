@@ -91,6 +91,10 @@ const seeResult =()=>{
     }
 }, 500);
 }
+const printResult =()=>{
+  setResult(true); 
+  window.print(); 
+}
 const closeResult =()=>{
   setResult(false); 
   setTimeout(() => {
@@ -121,11 +125,17 @@ const closeResult =()=>{
         {" "}
         {`Resultados de la Simulación:`}
       </Typography>
+      <Tooltip title="Imprimir Informe">
+        <IconButton aria-label="delete" size="large" onClick={printResult } sx={{height: 40, m:1, width:45}} disabled={data?.resultados?.length !==14}>
+        <FindInPageIcon/>
+       </IconButton>
+        </Tooltip>
 <Tooltip title="Ver resultados Tabulados">
         <IconButton aria-label="delete" size="large" onClick={seeResult } sx={{height: 40, m:1, width:45}} disabled={data?.resultados?.length !==14}>
         <FindInPageIcon/>
        </IconButton>
         </Tooltip>
+   
   </Box>
 <Grafic resultados= {data?.resultados} />
 
@@ -147,7 +157,7 @@ const closeResult =()=>{
   {" "}
   {`Resultados Tabulados`}
 </Typography>
-<Tooltip title="Cerrar Resultados Tabulados">
+<Tooltip title="Cerrar Resultados Tabulados" className="closeTooltip">
         <IconButton aria-label="delete" size="large" onClick={closeResult } sx={{height: 40, m:1, width:45}}>
         <CloseIcon/>
        </IconButton>

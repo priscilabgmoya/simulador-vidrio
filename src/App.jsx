@@ -1,5 +1,3 @@
-
-import { Typography } from '@mui/material'
 import './App.css'
 import Introduccion from './Components/Introduccion/Introduccion'
 import Mapa from './Components/Mapa/Mapa'
@@ -14,7 +12,6 @@ function App() {
     <>
     <NavBar>
         <Introduccion/>
-        <Typography variant="h3"  textAlign={"center"}>Simulador de Reciclado de Reciqlo  </Typography>
         <Mapa/>
         <Equipo/>
         <Footer/>

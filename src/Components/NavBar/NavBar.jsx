@@ -32,8 +32,8 @@ export default function NavBar(props) {
     const {children} = props
   return (
     <>
-      <ElevationScroll {...props}>
-        <AppBar color='success'>
+      <ElevationScroll {...props} className="navBar">
+        <AppBar color='success' >
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
              TFI- SIMULACIÓN
