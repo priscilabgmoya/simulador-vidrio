@@ -24,7 +24,13 @@ const addSelect = (props) => {
         map.setView([lat, lng], 15);
         setSimulator(true); 
         setSelect(label); 
-    } 
+    }
+ setTimeout(() => {
+      const element = document.getElementById("nuevaSimulacion"); 
+      if(element){
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+  }, 500);
 }; 
 const generateLoad =()=>{
   setLoad(true);
@@ -39,6 +45,7 @@ const closeSimulador = () => {
     if (map) {
       map.setView(["-34.47733729824062", "-58.57290783466175"], 12);
     }
+    window.location.reload(); 
   }
   const addValue = (value) =>{
     console.log(value);
@@ -86,9 +93,13 @@ const closeSimulador = () => {
       </MapContainer>
      
             </Box>
+        <Box id="nuevaSimulacion" sx={simulator ? {minHeight:200} : {minHeight:0} }>
+
         {
         simulator&& <NuevaSimulacion close={closeSimulador} addValue={addValue} text={select} load={generateLoad}/>
       }
+        </Box>
+
         
         </Box>
         {

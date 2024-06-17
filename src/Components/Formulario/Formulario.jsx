@@ -42,8 +42,17 @@ const {porcentajes} = generatePorcentaje();
 <>
         <Box component={"form"} onSubmit={formik.handleSubmit} className="formLogin" sx={form} >
           <Grid   container  width={"100%"} spacing={1}>
-          <Grid item  xs={6} >
-            <Typography sx={{m:1}}>{`Ingrese los datos recolectados de ${text}:`} </Typography>
+          <Grid item  xs={12} >
+          <Box  sx={{display:"flex" , gap:1}} > 
+            <Grid item xs={6}>
+            <Typography sx={{m:1}} >{`Ingrese los datos recolectados de ${text}:`} </Typography>
+            </Grid>
+            <Grid item xs={6}>
+            <Typography sx={{m:1}} >Rango de Botella que recicla una Persona: </Typography>
+             </Grid>
+             </Box>
+          </Grid>
+          <Grid item  xs={12} sm={6} >
           <TextField
             type="number"
             role="inputDescripcionProvincia"
@@ -58,8 +67,7 @@ const {porcentajes} = generatePorcentaje();
           />
           {formik.touched.cantidadPersonas && formik.errors.cantidadPersonas? <Box  sx={msgError}>{formik.errors.cantidadPersonas}</Box> : null}
           </Grid>
-          <Grid item xs={6}>
-          <Typography sx={{m:1}}>Rango de Botella que recicla una Persona: </Typography>
+          <Grid item xs={12} sm={6}>
             <Box  sx={{display:"flex" , gap:1}} >
             <Grid item xs={6}>
             <TextField
@@ -89,7 +97,7 @@ const {porcentajes} = generatePorcentaje();
             </Grid>
             </Box>
           </Grid>         
-          <Grid item xs={6}  >
+          <Grid item xs={12} sm={6}  >
 
           <Autocomplete
       disablePortal
@@ -104,7 +112,7 @@ const {porcentajes} = generatePorcentaje();
 
           {formik.touched.porcentajeConsumoVidrio && formik.errors.porcentajeConsumoVidrio? <Box  sx={msgError}>{formik.errors.porcentajeConsumoVidrio}</Box> : null}
           </Grid>
-          <Grid item xs={6}>
+          <Grid item xs={12} sm={6}>
                     <Autocomplete
       disablePortal
       id="combo-box-demo"
@@ -121,7 +129,7 @@ const {porcentajes} = generatePorcentaje();
         <Grid item xs={12}>
         <Box sx={{display: "flex", justifyContent:"center", alignItems:"center" , width:"100%"  }}>
           <Button   variant="contained" color="error" size="medium" onClick={closeModal}  sx={{m:1}}> Cancelar </Button>
-           <Button    variant="contained"  type="submit" color="success"   size="medium"     sx={{m:1}}> Simular </Button>
+           <Button    variant="contained"  type="submit" color="success"   size="medium"     sx={{m:1}} disabled={formik.values.porcentajePersonaReciclan.length == 0 }> Simular </Button>
         </Box>
         </Grid>
       </Grid>
