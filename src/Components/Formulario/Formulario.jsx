@@ -4,7 +4,7 @@ import { Label } from '@mui/icons-material';
 import { Autocomplete, Box, Button, Grid,TextField, Typography  } from '@mui/material';
 import { useFormik } from 'formik';
 import { generatePorcentaje, schemaSimulacion, valueSimulacion, verify } from '../../Helpers/helps';
-import { SimuladorVidrio, webWorker, workerPersonas } from '../../../netlify/functions/SimuladorVidrio';
+import { SimuladorVidrio, webWorker, workerPersonas } from '../../../SimuladorVidrio';
 import { useEffect, useState } from 'react';
 const inputGestionar = { width: "100%", backgroundColor: "white", m: 1 }
 const form = {display:"flex", flexDirection:"column"}
