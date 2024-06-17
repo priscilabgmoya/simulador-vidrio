@@ -5,7 +5,7 @@ function Footer() {
   const date = new Date();
 
   return (
-    <footer className="Footer">
+    <footer className="Footer  animate__animated animate__rollIn">
       <Typography
         sx={{
           textAlign: "center",

@@ -11,7 +11,7 @@ export default function MediaCardEquipo(props) {
 
     const {img, description, name, position, links} = props; 
   return (
-    <Card sx={{ width: '100%', backgroundColor: '#f0f0f0', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
+    <Card sx={{ width: '100%', backgroundColor: '#f0f0f0', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }} className="animate__animated animate__rollIn">
            <CardHeader
         avatar={
           <Avatar  src={img} aria-label="recipe">

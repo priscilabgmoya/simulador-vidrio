@@ -1,22 +1,22 @@
+/* eslint-disable react/prop-types */
+import { Route, Routes } from 'react-router-dom';
 import './App.css'
-import Introduccion from './Components/Introduccion/Introduccion'
-import Mapa from './Components/Mapa/Mapa'
-import NavBar from './Components/NavBar/NavBar'
-import Footer from './Components/Footer/Footer'
-import Equipo from './Components/QuienesSomos/QuienesSomos'
 
+import NavBar from './Components/NavBar/NavBar'
+import { routes } from "./Helpers/headers.jsx";
 function App() {
 
 
   return (
-    <>
     <NavBar>
-        <Introduccion/>
-        <Mapa/>
-        <Equipo/>
-        <Footer/>
+      <Routes>
+        {
+          routes.map((r, index)=>{
+            return <Route key={index} path={`${r.path}`} element={r.element} />
+          })
+        }
+      </Routes>
     </NavBar>
-    </>
   )
 }
 

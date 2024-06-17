@@ -10,7 +10,7 @@ import {
 export default function AlertWarning(props) {
   const { data } = props;
   return (
-    <Alert variant="filled" severity="warning">
+    <Alert variant="filled" severity="warning"  className="animate__animated animate__flipInY">
       <Typography
         sx={{ mb: 1, mt: 1, textAlign: "start", width: "100%" }}
         fontWeight="bold"

@@ -3,14 +3,15 @@
 import { Label } from '@mui/icons-material';
 import { Autocomplete, Box, Button, Grid,TextField, Typography  } from '@mui/material';
 import { useFormik } from 'formik';
-import { generatePorcentaje, schemaSimulacion, valueSimulacion } from '../../Helpers/helps';
+import { generatePorcentaje, schemaSimulacion, valueSimulacion, verify } from '../../Helpers/helps';
 import { SimuladorVidrio, webWorker, workerPersonas } from '../../../Simulador/SimuladorVidrio';
+import { useEffect, useState } from 'react';
 const inputGestionar = { width: "100%", backgroundColor: "white", m: 1 }
 const form = {display:"flex", flexDirection:"column"}
 const msgError = {color:"red", fontSize: 15,mt:1}
 
 export default function NuevaSimulacion(props){
-
+const [verifyBtn , setVerify] = useState(true)
   
   const  {open, text, close,addValue, load} = props; 
   const onSubmit = async (values,{resetForm})=>{ 
@@ -18,6 +19,7 @@ export default function NuevaSimulacion(props){
     // resetForm(); 
      load(); 
       }
+      
       const formik = useFormik({
         initialValues: valueSimulacion,
         validationSchema: schemaSimulacion,
@@ -37,10 +39,11 @@ webWorker.onmessage = async function(e){
              addValue(totales)
         }
     }
+let res = verify(formik)
 const {porcentajes} = generatePorcentaje(); 
     return(
 <>
-        <Box component={"form"} onSubmit={formik.handleSubmit} className="formLogin" sx={form} >
+        <Box component={"form"} onSubmit={formik.handleSubmit} className="formLogin animate__animated animate__fadeInUp" sx={form} >
           <Grid   container  width={"100%"} spacing={1}>
           <Grid item  xs={12} >
           <Box  sx={{display:"flex" , gap:1}} > 
@@ -129,7 +132,7 @@ const {porcentajes} = generatePorcentaje();
         <Grid item xs={12}>
         <Box sx={{display: "flex", justifyContent:"center", alignItems:"center" , width:"100%"  }}>
           <Button   variant="contained" color="error" size="medium" onClick={closeModal}  sx={{m:1}}> Cancelar </Button>
-           <Button    variant="contained"  type="submit" color="success"   size="medium"     sx={{m:1}} disabled={formik.values.porcentajePersonaReciclan.length == 0 }> Simular </Button>
+           <Button    variant="contained"  type="submit" color="success"   size="medium"     sx={{m:1}} disabled={!res}> Simular </Button>
         </Box>
         </Grid>
       </Grid>

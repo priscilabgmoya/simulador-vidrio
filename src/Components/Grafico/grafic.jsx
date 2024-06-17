@@ -52,8 +52,9 @@ export default function Grafic(props){
           m:1
         },
       };
-    return <Box sx={{width:"100%", display:"flex", justifyContent:"center", alignItems:"center", flexDirection:"column"}}>
-           <Typography
+    return <Box sx={{width:"100%", display:"flex", flexDirection:"column", justifyContent:"space-evenly"}}>
+      <Box sx={{width:"100%", display:"flex", flexDirection:"column", justifyContent:"space-evenly"}} className="animate__animated animate__fadeInTopLeft">
+<Typography
   variant="h6"
   sx={{ mb: 1, mt: 1, textAlign: "start", width: "100%" }}
   fontWeight="bold"
@@ -72,7 +73,9 @@ export default function Grafic(props){
     ]}
     {...chartSetting}
   />
-             <Typography
+      </Box>
+  <Box sx={{width:"100%", display:"flex", flexDirection:"column", justifyContent:"space-evenly"}} className="animate__animated animate__fadeInTopLeft">
+<Typography
   variant="h6"
   sx={{ mb: 1, mt: 1, textAlign: "start", width: "100%" }}
   fontWeight="bold"
@@ -90,8 +93,9 @@ export default function Grafic(props){
     ]}
     {...chartSetting}
   />
-
-             <Typography
+  </Box>
+<Box sx={{width:"100%", display:"flex", flexDirection:"column", justifyContent:"space-evenly"}} className="animate__animated animate__fadeInTopLeft">
+<Typography
   variant="h6"
   sx={{ mb: 1, mt: 1, textAlign: "start", width: "100%" }}
   fontWeight="bold"
@@ -109,5 +113,6 @@ export default function Grafic(props){
     ]}
     {...chartSettingVidrio}
   />
+  </Box>
     </Box>     
 }

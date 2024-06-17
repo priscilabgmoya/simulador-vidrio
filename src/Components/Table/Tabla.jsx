@@ -91,10 +91,6 @@ const seeResult =()=>{
     }
 }, 500);
 }
-const printResult =()=>{
-  setResult(true); 
-  window.print(); 
-}
 const closeResult =()=>{
   setResult(false); 
   setTimeout(() => {
@@ -121,15 +117,12 @@ const closeResult =()=>{
         variant="h4"
         sx={{ mb: 1, mt: 1, textAlign: "start", width: "100%" }}
         fontWeight="bold"
+        className="animate__animated animate__backInLeft"
       >
         {" "}
         {`Resultados de la Simulación:`}
+        
       </Typography>
-      <Tooltip title="Imprimir Informe">
-        <IconButton aria-label="delete" size="large" onClick={printResult } sx={{height: 40, m:1, width:45}} disabled={data?.resultados?.length !==14}>
-        <FindInPageIcon/>
-       </IconButton>
-        </Tooltip>
 <Tooltip title="Ver resultados Tabulados">
         <IconButton aria-label="delete" size="large" onClick={seeResult } sx={{height: 40, m:1, width:45}} disabled={data?.resultados?.length !==14}>
         <FindInPageIcon/>
@@ -137,17 +130,18 @@ const closeResult =()=>{
         </Tooltip>
    
   </Box>
-<Grafic resultados= {data?.resultados} />
-
+  
 {
   data?.resultados?.length == 14 && data?.cant_total_baldosas> 500 ?  <AlertSuccess data={data}/>   : null
 }
 {
   data?.resultados?.length == 14 && data?.cant_total_baldosas< 500 ?  <AlertWarning data={data}/>   : null
 }
+<Grafic resultados= {data?.resultados} />
+
   </Box>  
 {
-      result && <Box sx={{ display:"flex" , width:"100%" , flexDirection:"column"}} id="resultadoTabulados">
+      result && <Box sx={{ display:"flex" , width:"100%" , flexDirection:"column"}} id="resultadoTabulados" className="animate__animated animate__flipInX">
           <Box sx={{display:"flex" , width:"100%" , justifyContent:"space-between"}} >
    <Typography
   variant="h4"
