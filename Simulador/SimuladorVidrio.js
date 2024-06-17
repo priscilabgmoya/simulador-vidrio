@@ -2,7 +2,7 @@
 import { diaRecoleccion } from "./helps";
 
 export const webWorker = new Worker("../Worker.js"); 
-export const workerPersonas = new Worker("./WorkerPersonas.js"); 
+export const workerPersonas = new Worker("../WorkerPersonas.js"); 
 
 let dia = diaRecoleccion; 
 export async function SimuladorVidrio(values){
