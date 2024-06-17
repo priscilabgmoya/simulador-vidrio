@@ -58,7 +58,7 @@ const closeSimulador = () => {
 }
     return(
         <>
-        <Typography variant="h3"  textAlign={"center"} className="animate__animated animate__backInDown">Simulador de Reciclado de Reciqlo  </Typography>
+        <Typography variant="h3"  textAlign={"center"} className="animate__animated animate__backInLeft">Simulador de Reciclado de Reciqlo  </Typography>
         <Box sx={{width:"100%" ,display:"flex", flexDirection:"column"}} id="simulador" className="animate__animated  animate__fadeInLeftBig">
             <Box sx={  {width:"100%" }}>
         <MapContainer
