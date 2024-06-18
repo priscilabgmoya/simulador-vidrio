@@ -92,7 +92,7 @@ export default function NavBar(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }} className="navBar" onClick={()=>{navigate("/")}}>
-             TFI - SIMULACIÓN
+             GhostGlass
             </Typography>
            <NavList/>
            <Outlet /> 

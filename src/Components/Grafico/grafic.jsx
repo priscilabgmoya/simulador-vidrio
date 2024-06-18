@@ -15,7 +15,7 @@ export default function Grafic(props){
     const isMd = useMediaQuery(theme.breakpoints.down('md'));
     const isLg = useMediaQuery(theme.breakpoints.down('lg'));
   
-    const chartWidth = isXs ? 300 : isSm ? 600 : isMd ? 800 : isLg ? 1000 : 1370;
+    const chartWidth = isXs ? 300 : isSm ? 600 : isMd ? 800 : isLg ? 1000 : 1000;
     const chartHeight = isXs ? 200 : isSm ? 600 : isMd ? 400 : isLg ? 450 : 500;
     const chartSetting = {
         yAxis: [

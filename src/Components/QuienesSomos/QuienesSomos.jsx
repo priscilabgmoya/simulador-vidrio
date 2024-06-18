@@ -87,14 +87,14 @@ const equipo = [
 export default function Equipo() {
   return (
     <Box id="quienesSomos" sx={{width:"100%"}}>
-    <Typography variant="h3"  textAlign={"center"} className="animate__animated animate__backInLeft">¿Quiénes Somos? </Typography>
-      <Typography className="animate__animated animate__backInLeft">
+    <Typography variant="h3"  textAlign={"center"} sx={{mt:3}} className="animate__animated animate__backInLeft">¿Quiénes Somos? </Typography>
+      <Typography className="animate__animated animate__backInLeft" sx={{mt:1}}>
         Cada uno de nosotros desempeñó un rol crucial en el ciclo de vida del
         desarrollo de este software, contribuyendo con nuestras habilidades y
         experiencia para garantizar productos de alta calidad que satisficieran
         las necesidades y expectativas del negocio y de los usuarios finales.
       </Typography>
-      <Grid container width={"100%"} spacing={1}>
+      <Grid container width={"100%"} spacing={1} sx={{mt:1}}>
         {
             equipo.map((e,index)=>{
                 return <Grid item xs={12} sm={3}  key={index}> 

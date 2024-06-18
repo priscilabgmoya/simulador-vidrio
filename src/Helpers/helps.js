@@ -69,7 +69,7 @@ return {porcentajes}
 export const verify = (formik) =>{
 const {porcentajePersonaReciclan,porcentajeConsumoVidrio,normalB,normalA,cantidadPersonas} = formik.values; 
 const premise_one = porcentajePersonaReciclan.length !== 0 && porcentajeConsumoVidrio.length !== 0 ; 
-const premise_two = normalB > 1 && normalA > 1 && normalA <  normalB; 
+const premise_two = normalB >= 1 && normalA >= 1 && normalA <  normalB; 
 const premise_three = cantidadPersonas >-1 && cantidadPersonas>= 2000; 
 return premise_one && premise_two && premise_three; 
 }

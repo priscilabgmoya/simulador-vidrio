@@ -21,7 +21,7 @@ export default function MediaCardEquipo(props) {
         subheader={`Puesto: ${position}`}
       />
       <CardContent>
-        <Typography variant="body2" color="text.secondary" sx={{height:250, overflowY:"auto"  }} textAlign={"justify"}>
+        <Typography variant="body2" color="text.secondary" sx={{height:235, overflowY:"auto"  }} textAlign={"justify"}>
             {description}
         </Typography>
       </CardContent>

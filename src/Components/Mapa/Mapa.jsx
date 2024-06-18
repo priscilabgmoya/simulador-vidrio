@@ -58,7 +58,8 @@ const closeSimulador = () => {
 }
     return(
         <>
-        <Typography variant="h3"  textAlign={"center"} className="animate__animated animate__backInLeft">Simulador de Reciclado de Reciqlo  </Typography>
+        <Typography variant="h3" sx={{mt:5}} textAlign={"center"} className="animate__animated animate__backInLeft">Simulador de Reciclado de Botellas de Vidrio  </Typography>
+        <Typography   textAlign={"start"} sx={{fontSize:15, fontStyle:"italic"}} className="animate__animated animate__backInLeft">{`Por favor, seleccione un Punto Vidrio "uno(1) de los puntos violetas" para comenzar el proceso de simulación`}  </Typography>
         <Box sx={{width:"100%" ,display:"flex", flexDirection:"column"}} id="simulador" className="animate__animated  animate__fadeInLeftBig">
             <Box sx={  {width:"100%" }}>
         <MapContainer
@@ -97,14 +98,14 @@ const closeSimulador = () => {
         <Box id="nuevaSimulacion" sx={simulator ? {minHeight:200} : {minHeight:0} }>
 
         {
-        simulator&& <NuevaSimulacion close={closeSimulador} addValue={addValue} text={select} load={generateLoad}/>
+        simulator&& <NuevaSimulacion close={closeSimulador} addValue={addValue} text={select} load={generateLoad}  isLoading={isLoading}/>
       }
         </Box>
 
         
         </Box>
         {
-            isLoading ? <Resultados data={data}/>: null
+            isLoading ? <Resultados data={data} close={closeSimulador}/>: null
         }
         {
             load ? <LoadData/>: null 

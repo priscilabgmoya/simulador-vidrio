@@ -13,7 +13,7 @@ const msgError = {color:"red", fontSize: 15,mt:1}
 export default function NuevaSimulacion(props){
 const [verifyBtn , setVerify] = useState(true)
   
-  const  {open, text, close,addValue, load} = props; 
+  const  {open, text, close,addValue, load,isLoading} = props; 
   const onSubmit = async (values,{resetForm})=>{ 
      SimuladorVidrio(values,addValue); 
     // resetForm(); 
@@ -64,6 +64,7 @@ const {porcentajes} = generatePorcentaje();
             label= "Cantidad de Personas"
             helperText="El minimo de personas es de 2000"
             min={0}
+            disabled={isLoading}
             onChange={formik.handleChange}
             value={formik.values.cantidadPersonas}
             sx={inputGestionar}
@@ -79,6 +80,7 @@ const {porcentajes} = generatePorcentaje();
             name="normalA"
             id="descripcionProvincia"
             label= "Desde"
+            disabled={isLoading}
             onChange={formik.handleChange}
             value={formik.values.normalA}
             sx={inputGestionar}
@@ -92,6 +94,7 @@ const {porcentajes} = generatePorcentaje();
             name="normalB"
             id="descripcionProvincia"
             label= "Hasta"
+            disabled={isLoading}
             onChange={formik.handleChange}
             value={formik.values.normalB}
             sx={inputGestionar}
@@ -108,9 +111,10 @@ const {porcentajes} = generatePorcentaje();
       options={porcentajes}
       sx={inputGestionar}
       getOptionLabel={(option) => option.porcentaje}
+      disabled={isLoading}
       value={porcentajes.find(p => { return p.porcentaje == ""+formik.values.porcentajeConsumoVidrio })|| null}
       onChange={(_, newValue) => newValue?.porcentaje ?  formik.setFieldValue('porcentajeConsumoVidrio', newValue?.porcentaje): formik.setFieldValue('porcentajeConsumoVidrio', "")}
-      renderInput={(params) => <TextField {...params} type="number" label="Porcentaje de Personas que Comsumen Vidrio" />}
+      renderInput={(params) => <TextField {...params} type="number" label="Porcentaje de Personas que Comsumen Vidrio"  disabled={isLoading}/>}
     />
 
           {formik.touched.porcentajeConsumoVidrio && formik.errors.porcentajeConsumoVidrio? <Box  sx={msgError}>{formik.errors.porcentajeConsumoVidrio}</Box> : null}
@@ -122,17 +126,18 @@ const {porcentajes} = generatePorcentaje();
       options={porcentajes}
       sx={inputGestionar}
       getOptionLabel={(option) => option.porcentaje}
+      disabled={isLoading}
       value={ porcentajes.find(p => { return p.porcentaje == ""+formik.values.porcentajePersonaReciclan })|| null}
       onChange={(_, newValue) => newValue?.porcentaje? formik.setFieldValue('porcentajePersonaReciclan', newValue?.porcentaje) : formik.setFieldValue('porcentajePersonaReciclan', "")}
-      renderInput={(params) => <TextField {...params}  type="number" label="Porcentaje de Personas que Reciclan Vidrio" />}
+      renderInput={(params) => <TextField {...params}  type="number" label="Porcentaje de Personas que Reciclan Vidrio"  disabled={isLoading}/>}
     />
           {formik.touched.porcentajePersonaReciclan && formik.errors.porcentajePersonaReciclan? <Box  sx={msgError}>{formik.errors.porcentajePersonaReciclan}</Box> : null}
           </Grid>
 
         <Grid item xs={12}>
         <Box sx={{display: "flex", justifyContent:"center", alignItems:"center" , width:"100%"  }}>
-          <Button   variant="contained" color="error" size="medium" onClick={closeModal}  sx={{m:1}}> Cancelar </Button>
-           <Button    variant="contained"  type="submit" color="success"   size="medium"     sx={{m:1}} disabled={!res}> Simular </Button>
+          <Button   variant="contained" color="error" size="medium" onClick={closeModal}  sx={{m:1}}  disabled={isLoading} > Cancelar </Button>
+           <Button    variant="contained"  type="submit" color="success"   size="medium"     sx={{m:1}} disabled={!res || isLoading}> Simular </Button>
         </Box>
         </Grid>
       </Grid>

@@ -8,7 +8,7 @@ export default function Introduccion() {
         variant="h3"
         textAlign={"center"}
         className="animate__animated animate__backInLeft"
-        sx={{mt:2}}
+        sx={{mt:5}}
       >
         Situación Problematica
       </Typography>
@@ -35,7 +35,7 @@ export default function Introduccion() {
           <ListItem className="animate__animated animate__rollIn">
             <Typography variant="body1" textAlign={"justify"}>
               2- El vidrio es muy frágil, pero también muy resistente. Por eso
-              la naturaleza necesita 40 siglos aproximadamente para
+              la naturaleza necesita 40 siglos aproximadamente para empezar a
               descomponerse, lo que conlleva a un impacto negativo en el entorno
               natural y en la gestión global de los residuos sólidos.
             </Typography>
@@ -57,26 +57,6 @@ export default function Introduccion() {
         mercado, sumado al alto costo logístico que implica.
       </Typography>
 
-      <Typography
-        variant="h5"
-        textAlign={"justify"}
-        sx={{ mt: 2 }}
-        className="animate__animated animate__backInUp"
-        
-      >
-        ¿Quién es Nuestro Cliente?
-      </Typography>
-      <Typography
-        variant="body1"
-        textAlign={"justify"}
-        className="animate__animated animate__backInUp"
-        sx={{mt:2}}
-      >
-        Gustavo Chopitea el director de Reciqlo. Reciqlo es una empresa de
-        tecnología y Economía Circular, que mejora la eficiencia de los procesos
-        operativos y económicos del reciclado a través de la articulación de
-        empresas, gobiernos y sectores sociales.
-      </Typography>
       <Typography
         variant="h5"
         textAlign={"justify"}

@@ -19,7 +19,7 @@ function Footer() {
             textAlign: "center",
             m: 0,
             p: 0,
-            fontSize: 15,
+            fontSize: 13,
             verticalAlign: "middle",
           }}
         />{" "}
@@ -29,7 +29,7 @@ function Footer() {
             textAlign: "center",
             m: 0,
             p: 0,
-            fontSize: 15,
+            fontSize: 13,
             verticalAlign: "middle",
             color:"red"
           }}

@@ -10,7 +10,7 @@ import AlertSuccess from "../Alerts/AlertsSucces";
 import AlertWarning from "../Alerts/AlertWarning";
 
 export default function Resultados(props) {
-const {data} = props
+const {data, close} = props
 console.log(data);
 const [paginate, setPaginate] = useState({
     pageSize: 14,
@@ -123,6 +123,11 @@ const closeResult =()=>{
         {`Resultados de la Simulación:`}
         
       </Typography>
+      <Tooltip title="Limpiar Simulación">
+        <IconButton aria-label="delete" size="large" onClick={close } color="error" sx={{height: 40, m:1, width:45}} disabled={data?.resultados?.length !==14}>
+        <CloseIcon/>
+       </IconButton>
+        </Tooltip>
 <Tooltip title="Ver resultados Tabulados">
         <IconButton aria-label="delete" size="large" onClick={seeResult } sx={{height: 40, m:1, width:45}} disabled={data?.resultados?.length !==14}>
         <FindInPageIcon/>
@@ -132,10 +137,10 @@ const closeResult =()=>{
   </Box>
   
 {
-  data?.resultados?.length == 14 && data?.cant_total_baldosas> 500 ?  <AlertSuccess data={data}/>   : null
+  data?.resultados?.length == 14 && data?.cant_total_baldosas > 1000 ?  <AlertSuccess data={data}/>   : null
 }
 {
-  data?.resultados?.length == 14 && data?.cant_total_baldosas< 500 ?  <AlertWarning data={data}/>   : null
+  data?.resultados?.length == 14 && data?.cant_total_baldosas < 1000 ?  <AlertWarning data={data}/>   : null
 }
 <Grafic resultados= {data?.resultados} />
 
