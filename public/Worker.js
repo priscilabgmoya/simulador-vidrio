@@ -63,7 +63,6 @@ function Simulador(value, dia){
     let d = 0, personas= 0 ;  
     while(d <dia){ 
         personas = Normal(cantidadPersonas, generarNumero_c(),personas); 
-        console.log(d, personas);
         if(personas < 0) return Simulador(value,dia-d);
         workerPersonas.postMessage({value, personas, cdm:"calcular"});  
         d++; 
@@ -72,7 +71,6 @@ function Simulador(value, dia){
  // FIN DEL SIMULADOR // 
  let totales = {}, TVM=0;
 self.onmessage =   function(e){
-    console.log(e.data);
     const {cmd , value, dia,} = e.data; 
     if(cmd === 1){
         Simulador(value, dia); 

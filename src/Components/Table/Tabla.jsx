@@ -11,7 +11,6 @@ import AlertWarning from "../Alerts/AlertWarning";
 
 export default function Resultados(props) {
 const {data, close} = props
-console.log(data);
 const [paginate, setPaginate] = useState({
     pageSize: 14,
     page: 0,
@@ -137,7 +136,7 @@ const closeResult =()=>{
   </Box>
   
 {
-  data?.resultados?.length == 14 && data?.cant_total_baldosas > 1000 ?  <AlertSuccess data={data}/>   : null
+  data?.resultados?.length == 14 && data?.cant_total_baldosas >= 1000 ?  <AlertSuccess data={data}/>   : null
 }
 {
   data?.resultados?.length == 14 && data?.cant_total_baldosas < 1000 ?  <AlertWarning data={data}/>   : null

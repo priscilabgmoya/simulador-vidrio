@@ -12,7 +12,6 @@ export  async function Simulador(resultado, value, dias){
         let persona=0, botellasRecicladas =0, vidrioMolido=0; 
         personas = Normal(cantidadPersonas, generarNumero_c(),personas); 
 
-        console.log(dia, personas);
         if(personas < 0) return Simulador(resultado, value,dias-dia);
         while(persona < personas ){
         let  u = parseFloat(metodoLehmen(generarNumero_a(), generarNumero_c(), posicion)); 

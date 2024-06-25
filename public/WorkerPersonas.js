@@ -75,7 +75,6 @@ function CalcularPersonas(personas, value){
         botellas=0; 
         while(persona < personas ){
         let  u = parseFloat(metodoLehmen(generarNumero_a(), generarNumero_c(), posicion)); 
-        console.log(parseFloat(porcentajeConsumoVidrio));
         if(u<= parseFloat(porcentajeConsumoVidrio)){
             personaConsumeVidrio ++; 
             posicion++; 

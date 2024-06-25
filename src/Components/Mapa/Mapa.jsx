@@ -48,7 +48,6 @@ const closeSimulador = () => {
     window.location.reload(); 
   }
   const addValue = (value) =>{
-    console.log(value);
     setData({...value}); 
     setIsLoading(true); 
     setLoad(false); 
