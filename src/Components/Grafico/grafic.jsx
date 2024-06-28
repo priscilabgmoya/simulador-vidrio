@@ -67,8 +67,8 @@ export default function Grafic(props){
     xAxis={[{ scaleType: 'band', dataKey: 'dia',label:"Días" }]}
     series={[
       { dataKey: 'cant_personas', label: 'Cant. Personas', color:"#77996e" }, 
-      { dataKey: 'cant_personas_vidrio', label: 'Cant. Pers. que Consumen Vidrio', color:"#d3b8ae"},
-      { dataKey: 'cant_personas_no_vidrio', label: 'Cant. Pers. que Consumen No Vidrio', color:"#aec6cf"},
+      { dataKey: 'cant_personas_vidrio', label: 'Cant. Pers. que Consumen Botella de Vidrio', color:"#d3b8ae"},
+      { dataKey: 'cant_personas_no_vidrio', label: 'Cant. Pers. que No Consumen Botella de Vidrio', color:"#aec6cf"},
 
     ]}
     {...chartSetting}

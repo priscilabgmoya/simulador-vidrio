@@ -31,12 +31,12 @@ const handleChange = (e)=>{
     },
     {
       field: "cant_personas_vidrio",
-      headerName: "Cant. de Personas que Consumen Vidrio",
+      headerName: "Cant. de Personas que Consumen Botella de Vidrio",
       width: 220,
     },
     {
       field: "cant_personas_no_vidrio",
-      headerName:  "Cant. de Personas que no Consumen Vidrio",
+      headerName:  "Cant. de Personas que no Consumen Botella de Vidrio",
       width: 230,
     },
     {

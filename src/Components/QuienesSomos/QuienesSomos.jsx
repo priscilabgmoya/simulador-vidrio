@@ -8,6 +8,25 @@ import { Box, Grid, Typography } from "@mui/material";
 import MediaCardEquipo from "./Card";
 const equipo = [
   {
+    img: FotoMile,
+    description:
+      "Milena es una Product Owner con visión estratégica y habilidades de gestión de productos excepcionales.Ella colabora estrechamente con los stakeholders para definir la visión del producto y priorizar el backlog. Milena lidera al equipo de desarrollo ágil para maximizar el valor entregado en cada sprint, asegurando que el producto final no solo cumpla, sino que supere las expectativas del cliente.",
+    name: "Milena de los Angeles, Guitian",
+    position: "Product Owner",
+    links: [
+      {
+        icon: <LinkedInIcon />,
+        red: "LinkedIn",
+        link: "",
+      },
+      {
+        icon: <GitHubIcon />,
+        red: "GitHub",
+        link: "",
+      },
+    ],
+  },
+  {
     img: FotoIan,
     description:
       "Ian es un Analista de Requerimientos apasionado por entender las necesidades del negocio. Utiliza su experiencia en entrevistas y análisis de datos para traducir los requisitos de los stakeholders en especificaciones claras y concisas para el equipo de desarrollo. Ian juega un papel fundamental en asegurar que cada proyecto comience con una comprensión sólida y precisa de lo que se espera lograr.",
@@ -45,25 +64,7 @@ const equipo = [
       },
     ],
   },
-  {
-    img: FotoMile,
-    description:
-      "Milena es una Product Owner con visión estratégica y habilidades de gestión de productos excepcionales.Ella colabora estrechamente con los stakeholders para definir la visión del producto y priorizar el backlog. Milena lidera al equipo de desarrollo ágil para maximizar el valor entregado en cada sprint, asegurando que el producto final no solo cumpla, sino que supere las expectativas del cliente.",
-    name: "Milena de los Angeles, Guitian",
-    position: "Product Owner",
-    links: [
-      {
-        icon: <LinkedInIcon />,
-        red: "LinkedIn",
-        link: "",
-      },
-      {
-        icon: <GitHubIcon />,
-        red: "GitHub",
-        link: "",
-      },
-    ],
-  },
+ 
   {
     img: FotoPau,
     description:
